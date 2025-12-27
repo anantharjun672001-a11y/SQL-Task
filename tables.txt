@@ -1,0 +1,50 @@
+create database ecommerce;
+use ecommerce;
+
+create table customer(
+id int auto_increment primary key,
+name varchar(100) not null,
+email varchar(100) not null,
+address varchar(255)
+);
+desc customer;
+
+create table orders(
+id int auto_increment primary key,
+cust_id int,
+order_date DATE,
+totalAmount Decimal(10,2),
+foreign key(cust_id) references customer(id)
+);
+
+desc orders;
+
+create table product(
+id int auto_increment primary key,
+name varchar(100) not null,
+price decimal(10,2),
+description text
+);
+
+
+
+INSERT INTO customer (name,email,address) VALUES 
+('Alice','alice@gamil.com','123 Mian st'),
+('Bob', 'bob@gmail.com', '456 oak st'),
+('charlie','charlie@gmail.com','789 prime st');
+
+SELECT * from customer;
+
+INSERT INTO product (name,price,description) VALUES 
+('Product A',25.00,'Product A description'),
+('Product B',35.00,'Product B description'),
+('Product C',40.00,'Product C description');
+
+SELECT * FROM product;
+
+INSERT INTO orders (cust_id, order_date, totalAmount) VALUES
+(1, curdate(), 100.00),
+(2, curdate()-INTERVAL 10 day, 200.00),
+(1,curdate()-interval 40 day , 150.00);
+
+SELECT * FROM orders;
