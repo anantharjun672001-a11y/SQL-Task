@@ -53,3 +53,108 @@ id  name        price   description             discount
 1	Product A	25.00	Product A description	0.00
 2	Product B	35.00	Product B description	0.00
 3	Product C	45.00	Product C description	0.00
+
+
+Question 5:- Retrieve the top 3 products with the highest price.
+
+Anwser :
+
+select * from product order by price desc limit 3;
+
+
+Output :
+
+3	Product C	45.00	Product C description	0.00
+2	Product B	35.00	Product B description	0.00
+1	Product A	25.00	Product A description	0.00
+				
+
+Question 6:- Get the names of customers who have ordered Product A.   
+
+Anwser :
+
+
+SELECT DISTINCT c.name
+FROM customer c
+JOIN orders o ON c.id = o.cust_id
+JOIN product p ON o.id = p.id
+WHERE p.name = 'Product A';
+
+
+Output :
+
+Alice
+
+Question 7:- Retrieve the average total of all orders.
+
+Anwser :
+
+select AVG(totalAmount) AS average_amount from orders;
+
+Output :
+
+150.000000
+
+
+Question 8:- Retrieve the orders with a total amount greater than 150.00.
+
+Anwser :
+
+select * from orders where totalAmount >150.00;
+
+Output :
+
+select * from orders where totalAmount >150.00;
+
+
+Question 9:- Join the orders and customers tables to retrieve the customer's name and order date for each order. 
+
+
+Anwser :
+
+SELECT c.name, o.order_date
+FROM customer c
+JOIN orders o ON c.id = o.cust_id;
+
+
+Output :
+
+Alice	2025-12-27
+Bob	2025-12-17
+Alice	2025-11-17
+
+Question 10:- Normalize the database by creating a separate table for order items and updating the orders table to reference the order_items table.
+
+Anwser :
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10,2),
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+);
+
+
+INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
+(1, 1, 2, 30.00),
+(1, 2, 1, 60.00),
+(2, 3, 3, 45.00),
+(3, 1, 1, 30.00);
+
+Output :
+
+id	int	NO	PRI		auto_increment
+order_id	int	YES	MUL		
+product_id	int	YES	MUL		
+quantity	int	YES			
+price	decimal(10,2)	YES			
+
+
+6	1	1	2	30.00
+7	1	2	1	60.00
+8	2	3	3	45.00
+9	3	1	1	30.00
+				
