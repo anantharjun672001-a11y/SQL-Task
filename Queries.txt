@@ -12,3 +12,17 @@ Output:
 1	Alice	alice@gamil.com	123 Mian st
 2	Bob	bob@gmail.com	456 oak st
 
+Question 2:- Get the total amount of all orders placed by each customer.
+
+Anwser :
+
+select c.name , SUM(o.totalAmount) AS total_spent
+from customer c
+join orders o ON c.id=o.cust_id
+group by c.id;
+
+Output:
+
+Alice	250.00
+Bob	200.00
+
