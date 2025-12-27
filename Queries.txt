@@ -1,0 +1,14 @@
+Question 1:- Retrieve all customers who have placed an order in the last 30 days.
+
+Anwser :
+
+select distinct c.*
+from customer c
+join orders o on c.id=o.cust_id 
+where order_date >=curdate()-interval 30 day;
+
+Output:
+
+1	Alice	alice@gamil.com	123 Mian st
+2	Bob	bob@gmail.com	456 oak st
+
