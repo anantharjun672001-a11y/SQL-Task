@@ -26,3 +26,15 @@ Output:
 Alice	250.00
 Bob	200.00
 
+Question 3:- Update the price of Product C to 45.00.
+
+Anwser :
+
+update product set price='45' where id = 3;
+
+Output:
+
+1	Product A	25.00	Product A description	0.00
+2	Product B	35.00	Product B description	0.00
+3	Product C	45.00	Product C description	0.00
+				
